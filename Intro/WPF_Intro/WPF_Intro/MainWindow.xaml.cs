@@ -27,16 +27,34 @@ namespace WPF_Intro
 
         private void ClickMeButton_Click(object sender, RoutedEventArgs e)
         {
-            Button newHiddenButton = new Button
+            //Grid mainGrid = this.mainGrid;
+
+            //Button newHiddenButton = new Button
+            //{
+            //    Content = "I'm New",
+            //    Width = 120,
+            //    Height = 60
+            //};
+
+            //mainGrid.Children.Add(newHiddenButton);
+            //Grid.SetColumn(newHiddenButton, 0);
+            //Grid.SetRow(newHiddenButton, 2);
+
+            //Get num of columns in the Grid
+            int numCols = this.mainGrid.ColumnDefinitions.Count;
+
+            //Which col is the button currentl in?
+            int currColIndex = Grid.GetColumn(ClickMeButton);
+
+            //Move to the right, unless already in last column. If so move to first cloumn in next row
+            if (currColIndex != numCols - 1)
             {
-                Content = "I'm New",
-                Width = 120,
-                Height = 60
-            };
-            Grid mainGrid = this.mainGrid;
-            mainGrid.Children.Add(newHiddenButton);
-            Grid.SetColumn(newHiddenButton, 0);
-            Grid.SetRow(newHiddenButton, 2);
+                Grid.SetColumn(ClickMeButton, currColIndex + 1);
+            }
+            else
+            {
+                Grid.SetColumn(ClickMeButton, 0);
+            }
         }
     }
 }
