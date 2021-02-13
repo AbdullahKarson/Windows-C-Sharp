@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Media_Player</RootNamespace>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="media-play.png" />
+    <None Remove="open_file.png" />
+    <None Remove="pause-icon.png" />
+    <None Remove="stop-icon.png" />
+    <None Remove="tag_edit.png" />
+    <None Remove="textured.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TagLibSharp" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="tag_edit.png" />
+    <Resource Include="media-play.png" />
+    <Resource Include="open_file.png" />
+    <Resource Include="pause-icon.png" />
+    <Resource Include="stop-icon.png" />
+    <Resource Include="textured.jpg" />
+  </ItemGroup>
+
+</Project>
