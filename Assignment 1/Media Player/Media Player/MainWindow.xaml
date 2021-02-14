@@ -60,6 +60,10 @@
         <MediaElement Name="mediaPlayer" Grid.Row="1" Grid.Column="1" LoadedBehavior="Manual" Stretch="None"/>
         <!--#endregion-->
         
+        <!--#region Album Image-->
+        <Image x:Name="AlbumImage" Grid.Row="1" Grid.Column="1"></Image>
+        <!--#endregion-->
+        
         <!--#Region Tag TextBlock-->
         <StackPanel Grid.Row="1" Grid.Column="1" Margin="15 0 0 0" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <TextBlock Name="Title"  FontSize="32"></TextBlock>

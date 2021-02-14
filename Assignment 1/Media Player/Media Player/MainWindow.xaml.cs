@@ -33,11 +33,13 @@ namespace Media_Player
             TagEditBtn.OpenTagger += new EventHandler(OpenTagWindow);
             TagEditorMenu.OpenTagger += OpenTagWindow;
             DispatcherTimer timer = new DispatcherTimer();
+            //timer ticker
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             timer.Start();
         }
 
+        //set media Slider its value and tick each second of the song
         private void timer_Tick(object sender, EventArgs e)
         {
             if ((mediaPlayer.Source != null) && (mediaPlayer.NaturalDuration.HasTimeSpan) && (!userIsDraggingSlider))
@@ -48,16 +50,19 @@ namespace Media_Player
             }
         }
 
+        //check if application can be closed
         private void Close_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
         }
 
+        //close application
         private void Close_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
 
+        //check if file can be opened
         private void Open_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
@@ -83,8 +88,10 @@ namespace Media_Player
                 Title.Text = currentFile.Tag.Title;
                 Artist.Text = currentFile.Tag.FirstAlbumArtist;
                 Album.Text = currentFile.Tag.Album;
+
             }
 
+            //Enable Editing Tag Information
             if ((mediaPlayerPlaying == false) && (mediaPlayer.Source != null)){
                 TagEditorMenu.IsEnabled = true;
                 TagEditBtn.IsEnabled = true;
@@ -156,35 +163,49 @@ namespace Media_Player
         //open Tagging window
         private void OpenTagWindow(object sender, EventArgs e)
         {
+            //Hide Tag Window if clicked again
             if (TagEditor.Visibility == Visibility.Visible)
             {
                 TagEditor.Visibility = Visibility.Hidden;
             }
             else
             {
+                //check if mediaplayer is playing
                 if (mediaPlayerPlaying)
                 {
                     mediaPlayer.Stop();
+                    mediaPlayerPlaying = false;
                 }
 
+                //set Editor previouse tag information
                 TitleEditor.Text = Title.Text;
                 ArtistEditor.Text = Artist.Text;
                 AlbumEditor.Text = Album.Text;
 
+                //show tagging screen
                 TagEditor.Visibility = Visibility.Visible;
             }
         }
 
         private void SubmitTag_Click(object sender, RoutedEventArgs e)
         {
-            currentFile.Tag.Title = TitleEditor.Text;
-            currentFile.Tag.AlbumArtists = null;
-            currentFile.Tag.AlbumArtists = new[] { ArtistEditor.Text};
-            currentFile.Tag.Album = null;
-            currentFile.Tag.Album = AlbumEditor.Text;
+            try
+            {
+                //change tagging information and save it to temp current file
+                currentFile.Tag.Title = TitleEditor.Text;
+                currentFile.Tag.AlbumArtists = null;
+                currentFile.Tag.AlbumArtists = new[] { ArtistEditor.Text };
+                currentFile.Tag.Album = null;
+                currentFile.Tag.Album = AlbumEditor.Text;
 
-            currentFile.Save();
+                //save it to file
+                currentFile.Save();
+            }catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
+            //after submit hide tag window and display the new tagging information
             if (TagEditor.Visibility == Visibility.Visible)
             {
                 TagEditor.Visibility = Visibility.Hidden;
