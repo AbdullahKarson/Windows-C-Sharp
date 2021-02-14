@@ -25,18 +25,18 @@ namespace Media_Player
     {
         TagLib.File currentFile;
         private bool mediaPlayerPlaying;
-        private bool tagEditorOpen;
         private bool userIsDraggingSlider;
 
         public MainWindow()
         {
             InitializeComponent();
+            TagEditBtn.OpenTagger += new EventHandler(OpenTagWindow);
+            TagEditorMenu.OpenTagger += OpenTagWindow;
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             timer.Start();
         }
-
 
         private void timer_Tick(object sender, EventArgs e)
         {
@@ -78,11 +78,16 @@ namespace Media_Player
 
                 //Set the source of the media player element.
                 currentFile = TagLib.File.Create(openFileDialog.FileName);
+
+                //set Tag Info on WPF
+                Title.Text = currentFile.Tag.Title;
+                Artist.Text = currentFile.Tag.FirstAlbumArtist;
+                Album.Text = currentFile.Tag.Album;
             }
 
             if ((mediaPlayerPlaying == false) && (mediaPlayer.Source != null)){
-                TagEditBtn.IsEnabled = true;
                 TagEditorMenu.IsEnabled = true;
+                TagEditBtn.IsEnabled = true;
             }
         }
 
@@ -124,33 +129,36 @@ namespace Media_Player
             mediaPlayer.Stop();
             mediaPlayerPlaying = false;
 
+            //set Tag Edit Buttons to Enabled
             TagEditBtn.IsEnabled = true;
             TagEditorMenu.IsEnabled = true;
         }
 
+        //user started dragging slider
         private void sliProgress_DragStarted(object sender, DragStartedEventArgs e)
         {
             userIsDraggingSlider = true;
         }
 
+        //user finished gragging slider and song position changes to new slider position time
         private void sliProgress_DragCompleted(object sender, DragCompletedEventArgs e)
         {
             userIsDraggingSlider = false;
             mediaPlayer.Position = TimeSpan.FromSeconds(MediaSlider.Value);
         }
 
+        //timer gets new value each second
         private void sliProgress_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             lblProgressStatus.Text = TimeSpan.FromSeconds(MediaSlider.Value).ToString(@"hh\:mm\:ss");
         }
 
-        private void TagEdit_Click(object sender, RoutedEventArgs e)
+        //open Tagging window
+        private void OpenTagWindow(object sender, EventArgs e)
         {
-            // Stop Media Player To Edit Tags
-            
-            if (TagEditor.Visibility == Visibility.Visible){
+            if (TagEditor.Visibility == Visibility.Visible)
+            {
                 TagEditor.Visibility = Visibility.Hidden;
-                tagEditorOpen = false;
             }
             else
             {
@@ -158,8 +166,33 @@ namespace Media_Player
                 {
                     mediaPlayer.Stop();
                 }
+
+                TitleEditor.Text = Title.Text;
+                ArtistEditor.Text = Artist.Text;
+                AlbumEditor.Text = Album.Text;
+
                 TagEditor.Visibility = Visibility.Visible;
-                tagEditorOpen = true;
+            }
+        }
+
+        private void SubmitTag_Click(object sender, RoutedEventArgs e)
+        {
+            currentFile.Tag.Title = TitleEditor.Text;
+            currentFile.Tag.AlbumArtists = null;
+            currentFile.Tag.AlbumArtists = new[] { ArtistEditor.Text};
+            currentFile.Tag.Album = null;
+            currentFile.Tag.Album = AlbumEditor.Text;
+
+            currentFile.Save();
+
+            if (TagEditor.Visibility == Visibility.Visible)
+            {
+                TagEditor.Visibility = Visibility.Hidden;
+
+                //set Tag Info on WPF
+                Title.Text = currentFile.Tag.Title;
+                Artist.Text = currentFile.Tag.FirstAlbumArtist;
+                Album.Text = currentFile.Tag.Album;
             }
         }
     }

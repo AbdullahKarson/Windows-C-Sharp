@@ -14,13 +14,24 @@ using System.Windows.Shapes;
 namespace Media_Player
 {
     /// <summary>
-    /// Interaction logic for TagEditorController.xaml
+    /// Interaction logic for TagEditMenuControl.xaml
     /// </summary>
-    public partial class TagEditorController : UserControl
+    public partial class TagEditMenuControl : UserControl
     {
-        public TagEditorController()
+
+        public event EventHandler OpenTagger;
+
+        public TagEditMenuControl()
         {
             InitializeComponent();
+        }
+
+        private void TagEdit_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.OpenTagger != null)
+            {
+                this.OpenTagger(this, e);
+            }
         }
     }
 }
