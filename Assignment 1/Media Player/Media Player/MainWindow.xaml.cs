@@ -20,6 +20,9 @@ namespace Media_Player
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
+    /// Citation: 
+    /// https://www.wpf-tutorial.com/audio-video/how-to-creating-a-complete-audio-video-player/
+    /// for slider, timer and media control
     /// </summary>
     public partial class MainWindow : Window
     {
