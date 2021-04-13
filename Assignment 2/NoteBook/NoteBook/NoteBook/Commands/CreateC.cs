@@ -46,9 +46,9 @@ namespace NoteBook.Commands
             noteFileViewModel.canDelete = false;
             noteFileViewModel.canEdit = false;
 
-            noteFileViewModel.ChangesMade();
+            noteFileViewModel.ChangeButtonState();
             noteFileViewModel.StartFiltering();
-            noteFileViewModel.CreateFileList();
+            noteFileViewModel.CreateOrDisplayFileList();
 
         }
 

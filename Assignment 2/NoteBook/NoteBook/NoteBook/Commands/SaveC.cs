@@ -56,7 +56,7 @@ namespace NoteBook.Commands
 
 
             //Update the files collection and allow file searching
-            nFileViewModel.CreateFileList();
+            nFileViewModel.CreateOrDisplayFileList();
             nFileViewModel.StartFiltering();
 
             //Make clickable/unclickable of command Buttons
@@ -65,7 +65,7 @@ namespace NoteBook.Commands
             nFileViewModel.canDelete = false;
             nFileViewModel.canSave = false;
 
-            nFileViewModel.ChangesMade();
+            nFileViewModel.ChangeButtonState();
 
             //Set Text box to blank
             textBox.Text = "";

@@ -38,7 +38,7 @@ namespace NoteBook.ViewModels
         private NoteFile currentFile;
 
         //check if File is new bool
-        public bool isNew;
+        public bool isNew = true;
 
         //Make Buttons accessible
         public bool canEdit { get; set; } = true;
@@ -46,7 +46,7 @@ namespace NoteBook.ViewModels
         public bool canDelete { get; set; } = false;
 
 
-        public string fileDesc { get; set; }
+        //public string fileDesc { get; set; }
         public string fileName { get; set; }
         public string fileContent { get; set; }
 
@@ -69,7 +69,7 @@ namespace NoteBook.ViewModels
 
 
             // create a list of files
-            CreateFileList();
+            CreateOrDisplayFileList();
 
             //Perform Filtering
             StartFiltering();
@@ -101,14 +101,14 @@ namespace NoteBook.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("fileContent"));
 
                 // update the command event handlers 
-                ChangesMade();
+                ChangeButtonState();
             }
         }
 
         /// <summary>
         ///Set the command event handlers
         /// </summary>
-        public void ChangesMade()
+        public void ChangeButtonState()
         {
             deleteC.FireCanExecuteChanged();
             createC.FireCanExecuteChanged();
@@ -119,7 +119,9 @@ namespace NoteBook.ViewModels
 
         }
 
-        // filter the file names
+        /// <summary>
+        /// Filter the file names
+        /// </summary>
         public void StartFiltering()
         {
             NoteFiles.Clear();
@@ -179,8 +181,10 @@ namespace NoteBook.ViewModels
             }
         }
 
-        // Display the existing file names
-        public async void CreateFileList()
+        /// <summary>
+        /// Display the existing file names
+        /// </summary>
+        public async void CreateOrDisplayFileList()
         {
             noteFiles.Clear();
             NoteFiles.Clear();
@@ -210,7 +214,11 @@ namespace NoteBook.ViewModels
             StartFiltering();
         }
 
-        // check whether the filename is already exist or not
+        /// <summary>
+        /// Check whether the filename is already exist or not
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public bool NameExists(string text)
         {
             foreach (NoteFile file in NoteFiles)

@@ -42,9 +42,9 @@ namespace NoteBook.Commands
             nFileViewModel.canEdit = false;
             nFileViewModel.canSave = false;
 
-            nFileViewModel.ChangesMade();
+            nFileViewModel.ChangeButtonState();
             nFileViewModel.StartFiltering();
-            nFileViewModel.CreateFileList();
+            nFileViewModel.CreateOrDisplayFileList();
         }
 
         public void FireCanExecuteChanged()

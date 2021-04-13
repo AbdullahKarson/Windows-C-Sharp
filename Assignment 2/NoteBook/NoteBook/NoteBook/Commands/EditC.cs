@@ -40,7 +40,7 @@ namespace NoteBook.Commands
             nFileViewModel.canEdit = false;
             nFileViewModel.isNew = false;
 
-            nFileViewModel.ChangesMade();
+            nFileViewModel.ChangeButtonState();
         }
 
         public void FireCanExecuteChanged()
