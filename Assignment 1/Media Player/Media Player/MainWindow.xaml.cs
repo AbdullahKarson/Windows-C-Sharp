@@ -34,16 +34,18 @@ namespace Media_Player
         {
             InitializeComponent();
             TagEditBtn.OpenTagger += new EventHandler(OpenTagWindow);
-            TagEditorMenu.OpenTagger += OpenTagWindow;
-            DispatcherTimer timer = new DispatcherTimer();
-            //timer ticker
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += timer_Tick;
+            TagEditorMenu.OpenTagger += new EventHandler(OpenTagWindow);
+            DispatcherTimer timer = new DispatcherTimer
+            {
+                //timer ticker
+                Interval = TimeSpan.FromSeconds(1)
+            };
+            timer.Tick += Timer_Tick;
             timer.Start();
         }
 
         //set media Slider its value and tick each second of the song
-        private void timer_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
             if ((mediaPlayer.Source != null) && (mediaPlayer.NaturalDuration.HasTimeSpan) && (!userIsDraggingSlider))
             {
@@ -74,9 +76,11 @@ namespace Media_Player
         private void Open_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             //open File Dialog
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            //Filter File Dialog for only mp3 files
-            openFileDialog.Filter = "Media files (*.mp3)|*.mp3|All files (*.*)|*.*";
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                //Filter File Dialog for only mp3 files
+                Filter = "Media files (*.mp3)|*.mp3|All files (*.*)|*.*"
+            };
 
             //if mp3 opens:
             if (openFileDialog.ShowDialog() == true)
@@ -145,20 +149,20 @@ namespace Media_Player
         }
 
         //user started dragging slider
-        private void sliProgress_DragStarted(object sender, DragStartedEventArgs e)
+        private void SliProgress_DragStarted(object sender, DragStartedEventArgs e)
         {
             userIsDraggingSlider = true;
         }
 
         //user finished gragging slider and song position changes to new slider position time
-        private void sliProgress_DragCompleted(object sender, DragCompletedEventArgs e)
+        private void SliProgress_DragCompleted(object sender, DragCompletedEventArgs e)
         {
             userIsDraggingSlider = false;
             mediaPlayer.Position = TimeSpan.FromSeconds(MediaSlider.Value);
         }
 
         //timer gets new value each second
-        private void sliProgress_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void SliProgress_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             lblProgressStatus.Text = TimeSpan.FromSeconds(MediaSlider.Value).ToString(@"hh\:mm\:ss");
         }

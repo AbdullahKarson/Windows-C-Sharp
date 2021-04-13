@@ -60,10 +60,6 @@
         <MediaElement Name="mediaPlayer" Grid.Row="1" Grid.Column="1" LoadedBehavior="Manual" Stretch="None"/>
         <!--#endregion-->
         
-        <!--#region Album Image-->
-        <Image x:Name="AlbumImage" Grid.Row="1" Grid.Column="1"></Image>
-        <!--#endregion-->
-        
         <!--#Region Tag TextBlock-->
         <StackPanel Grid.Row="1" Grid.Column="1" Margin="15 0 0 0" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <TextBlock Name="Title"  FontSize="32"></TextBlock>
@@ -135,8 +131,8 @@
             <TextBlock x:Name="lblProgressStatus" Margin="10 0 0 0" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center">
                 00:00:00
             </TextBlock>
-            <Slider x:Name="MediaSlider" Margin="20 0 0 0" Width="660" Thumb.DragStarted="sliProgress_DragStarted"
-                    Thumb.DragCompleted="sliProgress_DragCompleted" ValueChanged="sliProgress_ValueChanged" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Slider x:Name="MediaSlider" Margin="20 0 0 0" Width="660" Thumb.DragStarted="SliProgress_DragStarted"
+                    Thumb.DragCompleted="SliProgress_DragCompleted" ValueChanged="SliProgress_ValueChanged" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
         <!--#endregion-->
     </Grid>
