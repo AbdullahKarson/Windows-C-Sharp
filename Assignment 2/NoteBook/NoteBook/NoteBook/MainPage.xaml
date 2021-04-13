@@ -25,15 +25,15 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="51*"/>
-            <RowDefinition Height="449*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="450*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="107*"/>
-            <ColumnDefinition Width="393*"/>
+            <ColumnDefinition Width="110*"/>
+            <ColumnDefinition Width="390*"/>
         </Grid.ColumnDefinitions>
 
-        <Border BorderThickness="1" BorderBrush="SpringGreen" Margin="2">
+        <Border BorderThickness="1" BorderBrush="SpringGreen" Margin="1">
             <TextBox x:Name="FilterTextbox" 
                  Text="{x:Bind NoteFileViewModel.Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  PlaceholderText="Search Note here..."
@@ -42,7 +42,7 @@
             </TextBox>
         </Border>
 
-        <Border Grid.Row="1" Grid.Column="0" BorderThickness="1" BorderBrush="SpringGreen" Margin="2">
+        <Border Grid.Row="1" Grid.Column="0" BorderThickness="1" BorderBrush="SpringGreen" Margin="1">
             <ScrollViewer>
                 <ListView
                         ItemsSource="{Binding Source={StaticResource NoteFilesCollection}}"
@@ -59,7 +59,7 @@
         </Border>
 
         <StackPanel Grid.Column="1" Grid.Row="1">
-            <TextBox ScrollViewer.HorizontalScrollMode="Auto" x:Name="fileText" Width="550" Height="600" AcceptsReturn="True" Margin="0 20"
+            <TextBox ScrollViewer.HorizontalScrollMode="Auto" x:Name="fileText" Width="550" Height="600" AcceptsReturn="True" Margin="0 20" BorderBrush="SpringGreen"
                      TextWrapping="Wrap" Text="{x:Bind NoteFileViewModel.fileContent, Mode=TwoWay}"/>
         </StackPanel>
 

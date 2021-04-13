@@ -20,7 +20,7 @@ namespace NoteBook
     {
         NoteFileViewModel nFileViewModel;
         public string fName = "";
-        public bool IsExited = false;
+        public bool IsExecuted = false;
         public bool IsValid = false;
 
         public SaveDialog(NoteFileViewModel pNoteFileViewModel)
@@ -55,7 +55,7 @@ namespace NoteBook
         private void ContentDialog_CancelButton(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             this.fName = "";
-            this.IsExited = true;
+            this.IsExecuted = true;
         }
     }
 }

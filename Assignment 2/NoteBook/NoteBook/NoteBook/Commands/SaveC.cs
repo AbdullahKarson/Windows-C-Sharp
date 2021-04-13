@@ -43,7 +43,7 @@ namespace NoteBook.Commands
                 SaveDialog saveDialog = new SaveDialog(nFileViewModel);
                 await saveDialog.ShowAsync();
                 //Create a new file
-                if (!saveDialog.IsExited)
+                if (!saveDialog.IsExecuted)
                 {
                     noteBookRepo.CreateNewFile(saveDialog.fName, textBox.Text);
                 }

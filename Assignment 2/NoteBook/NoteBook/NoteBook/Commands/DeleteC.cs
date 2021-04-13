@@ -32,19 +32,25 @@ namespace NoteBook.Commands
         /// Deletes the Selected File
         /// </summary>
         /// <param name="parameter"></param>
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
-            //Delete the selected file from the windows storage
-            noteBookRepo.DeleteFile(nFileViewModel.fileName);
+            DeleteDialog deleteDialog = new DeleteDialog(nFileViewModel.fileName);
+            await deleteDialog.ShowAsync();
 
-            //Set the selected file empty and make the Edit and Save button unclickable
-            nFileViewModel.SelectedFile = new NoteFile("", "");
-            nFileViewModel.canEdit = false;
-            nFileViewModel.canSave = false;
+            if (deleteDialog.IsExecuted)
+            {
+                //Delete the selected file from the windows storage
+                noteBookRepo.DeleteFile(nFileViewModel.fileName);
 
-            nFileViewModel.ChangeButtonState();
-            nFileViewModel.StartFiltering();
-            nFileViewModel.CreateOrDisplayFileList();
+                //Set the selected file empty and make the Edit and Save button unclickable
+                nFileViewModel.SelectedFile = new NoteFile("", "");
+                nFileViewModel.canEdit = false;
+                nFileViewModel.canSave = false;
+
+                nFileViewModel.ChangeButtonState();
+                nFileViewModel.StartFiltering();
+                nFileViewModel.CreateOrDisplayFileList();
+            }
         }
 
         public void FireCanExecuteChanged()
