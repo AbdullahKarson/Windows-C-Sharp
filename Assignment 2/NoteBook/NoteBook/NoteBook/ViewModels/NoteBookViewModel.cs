@@ -52,6 +52,17 @@ namespace NoteBook.ViewModels
 
         private string _filter;
 
+        public NoteFileViewModel() {
+            // create an object of NoteFile collection
+            NoteFiles = new ObservableCollection<NoteFile>();
+
+            // create a list of files
+            CreateOrDisplayFileList();
+
+            //Perform Filtering
+            //StartFiltering();
+        }
+
         public NoteFileViewModel(TextBox tBox)
         {
             textBox = tBox;
