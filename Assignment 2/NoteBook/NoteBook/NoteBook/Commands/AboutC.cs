@@ -19,7 +19,7 @@ namespace NoteBook.Commands
         /// </summary>
         /// <param name="parameter"></param>
         public async void Execute(object parameter)
-        {
+        { 
             //About Message
             string message = "UWP Application\nMade By: Abdullah Karson";
             message = message.ToUpper();

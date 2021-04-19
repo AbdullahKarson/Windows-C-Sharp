@@ -1,4 +1,5 @@
-﻿using NoteBook.Repositories;
+﻿using NoteBook.Repo;
+using NoteBook.Repositories;
 using NoteBook.ViewModels;
 using System;
 using System.Windows.Input;
@@ -45,13 +46,15 @@ namespace NoteBook.Commands
                 //Create a new file
                 if (!saveDialog.IsExecuted)
                 {
-                    noteBookRepo.CreateNewFile(saveDialog.fName, textBox.Text);
+                    //noteBookRepo.CreateNewFile(saveDialog.fName, textBox.Text);
+                    DBNoteBook.InsertNote(saveDialog.fName,textBox.Text);
                 }
             }
             else
             {
                 //Write to an existing file
-                noteBookRepo.WriteToFile(textBox.Text, nFileViewModel.fileName);
+                //noteBookRepo.WriteToFile(textBox.Text, nFileViewModel.fileName);
+                DBNoteBook.InsertNote(nFileViewModel.fileName, textBox.Text);
             }
 
 

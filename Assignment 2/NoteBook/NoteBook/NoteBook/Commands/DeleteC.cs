@@ -1,4 +1,5 @@
 ﻿using NoteBook.Models;
+using NoteBook.Repo;
 using NoteBook.Repositories;
 using NoteBook.ViewModels;
 using System;
@@ -40,7 +41,8 @@ namespace NoteBook.Commands
             if (deleteDialog.IsExecuted)
             {
                 //Delete the selected file from the windows storage
-                noteBookRepo.DeleteFile(nFileViewModel.fileName);
+                //noteBookRepo.DeleteFile(nFileViewModel.fileName);
+                DBNoteBook.DeleteFile(nFileViewModel.fileName);
 
                 //Set the selected file empty and make the Edit and Save button unclickable
                 nFileViewModel.SelectedFile = new NoteFile("", "");

@@ -69,7 +69,7 @@
         <CommandBar>
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Name="About" Label="About" ToolTipService.ToolTip="Info"
-                             Command="{x:Bind NoteFileViewModel.aboutC}"></AppBarButton>
+                             Click="About_Click"></AppBarButton>
                 <AppBarButton x:Name="Exit" Label="Exit" ToolTipService.ToolTip="Exit Application"
                                Command="{x:Bind NoteFileViewModel.exitC}">
                 </AppBarButton>

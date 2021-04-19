@@ -1,5 +1,6 @@
 ﻿using NoteBook.Commands;
 using NoteBook.Models;
+using NoteBook.Repo;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -200,26 +201,28 @@ namespace NoteBook.ViewModels
             noteFiles.Clear();
             NoteFiles.Clear();
 
-            StorageFolder textFolder = ApplicationData.Current.LocalFolder;
+            noteFiles = DBNoteBook.RetrieveAllFiles();
 
-            IReadOnlyList<StorageFile> storageFiles = await textFolder.GetFilesAsync();
+            //StorageFolder textFolder = ApplicationData.Current.LocalFolder;
 
-            //For each file input into all files list
-            foreach (StorageFile file in storageFiles)
-            {
-                if (file != null)
-                {
-                    try
-                    {
-                        // display file names from the list
-                        noteFiles.Add(new NoteFile(file.DisplayName, await FileIO.ReadTextAsync(file)));
-                    }
-                    catch (FileNotFoundException ex)
-                    {
-                        Debug.WriteLine("Oh noes! File not found " + ex.Message);
-                    }
-                }
-            }
+            //IReadOnlyList<StorageFile> storageFiles = await textFolder.GetFilesAsync();
+
+            ////For each file input into all files list
+            //foreach (StorageFile file in storageFiles)
+            //{
+            //    if (file != null)
+            //    {
+            //        try
+            //        {
+            //            // display file names from the list
+            //            noteFiles.Add(new NoteFile(file.DisplayName, await FileIO.ReadTextAsync(file)));
+            //        }
+            //        catch (FileNotFoundException ex)
+            //        {
+            //            Debug.WriteLine("Oh noes! File not found " + ex.Message);
+            //        }
+            //    }
+            //}
 
             // call the perform filtering
             StartFiltering();

@@ -9,13 +9,13 @@
   <Identity
     Name="ee09e650-8687-4d7d-9aa2-1eef75aeaac9"
     Publisher="CN=abdul"
-    Version="1.0.1.0" />
+    Version="1.1.2.0" />
 
   <mp:PhoneIdentity PhoneProductId="ee09e650-8687-4d7d-9aa2-1eef75aeaac9" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>NoteBook</DisplayName>
-    <PublisherDisplayName>abdul</PublisherDisplayName>
+    <PublisherDisplayName>Abdullah Karson</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
