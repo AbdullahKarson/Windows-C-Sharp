@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace HeartStoneCardClass
 {
-
-
     public class Rootobject
     {
         public Class1[] Property1 { get; set; }

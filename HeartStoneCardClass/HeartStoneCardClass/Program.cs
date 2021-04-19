@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
+using static HeartStoneCardClass.Rootobject;
 
 namespace HeartStoneCardClass
 {
@@ -19,7 +20,7 @@ namespace HeartStoneCardClass
         static async Task RunAsync()
         {
             HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(
-                string.Format("https://omgvamp-hearthstone-v1.p.rapidapi.com/cards")
+                string.Format("https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/classic")
                 );
 
             webReq.Method = "GET";
@@ -38,9 +39,9 @@ namespace HeartStoneCardClass
                 jsonString = reader.ReadToEnd();
             }
 
-            Debug.WriteLine()
+            Debug.WriteLine(jsonString);
 
-            //List<Bundle> bundle = JsonConvert.DeserializeObject<List<Bundle>>(jsonString);
+            var bundle = JsonConvert.DeserializeObject<Rootobject>(jsonString);
         }
     }
 }

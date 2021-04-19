@@ -54,7 +54,7 @@ namespace NoteBook.Commands
             {
                 //Write to an existing file
                 //noteBookRepo.WriteToFile(textBox.Text, nFileViewModel.fileName);
-                DBNoteBook.InsertNote(nFileViewModel.fileName, textBox.Text);
+                DBNoteBook.UpdateNote(nFileViewModel.fileName, textBox.Text);
             }
 
 

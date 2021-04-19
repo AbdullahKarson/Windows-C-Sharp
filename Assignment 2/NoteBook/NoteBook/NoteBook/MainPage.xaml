@@ -34,10 +34,10 @@
         </Grid.ColumnDefinitions>
 
         <Border BorderThickness="1" BorderBrush="SpringGreen" Margin="1">
-            <TextBox x:Name="FilterTextbox" 
+            <TextBox x:Name="FilterTextbox"
                  Text="{x:Bind NoteFileViewModel.Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                 PlaceholderText="Search Note here..."
-                 FontSize="16" Margin="6" Height="50"
+                 PlaceholderText="Search Note here..." 
+                 FontSize="20" Margin="6" Height="45" VerticalAlignment="Center"
                  Grid.Row="0" Grid.Column="0">
             </TextBox>
         </Border>
@@ -59,7 +59,8 @@
         </Border>
 
         <StackPanel Grid.Column="1" Grid.Row="1">
-            <TextBox ScrollViewer.HorizontalScrollMode="Auto" x:Name="fileText" Width="550" Height="600" AcceptsReturn="True" Margin="0 20" BorderBrush="SpringGreen"
+            <TextBox ScrollViewer.HorizontalScrollMode="Auto" x:Name="fileText" Width="550" Height="600" 
+                     AcceptsReturn="True" Margin="0 20" BorderBrush="SpringGreen" FontSize="24"
                      TextWrapping="Wrap" Text="{x:Bind NoteFileViewModel.fileContent, Mode=TwoWay}"/>
         </StackPanel>
 
@@ -67,26 +68,26 @@
 
     <Page.BottomAppBar>
         <CommandBar>
+            <AppBarButton
+                    Icon="Add" Label="New Note" ToolTipService.ToolTip="Create Blank Note"
+                Command="{x:Bind NoteFileViewModel.createC}"/>
+
+            <AppBarButton Icon="Save" Label="Save" ToolTipService.ToolTip="Save to File"
+                Command="{x:Bind NoteFileViewModel.saveC}"/>
+
+            <AppBarButton Icon="Edit" Label="Edit" ToolTipService.ToolTip="Edit Note"
+                Command="{x:Bind NoteFileViewModel.editC}"/>
+
+            <AppBarButton Icon="Delete" Label="Delete" ToolTipService.ToolTip="Delete Note"
+                Command="{x:Bind NoteFileViewModel.deleteC}"/>
+
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Name="About" Label="About" ToolTipService.ToolTip="Info"
-                             Click="About_Click"></AppBarButton>
+                             Click="About_Click"/>
                 <AppBarButton x:Name="Exit" Label="Exit" ToolTipService.ToolTip="Exit Application"
-                               Command="{x:Bind NoteFileViewModel.exitC}">
-                </AppBarButton>
+                               Command="{x:Bind NoteFileViewModel.exitC}"/>
+
             </CommandBar.SecondaryCommands>
-            <AppBarButton
-                    Icon="Add" Label="Add" ToolTipService.ToolTip="Create Blank Note"
-                Command="{x:Bind NoteFileViewModel.createC}">
-            </AppBarButton>
-            <AppBarButton Icon="Save" Label="Save" ToolTipService.ToolTip="Save to File"
-                Command="{x:Bind NoteFileViewModel.saveC}">
-            </AppBarButton>
-            <AppBarButton Icon="Edit" Label="Edit" ToolTipService.ToolTip="Edit Note"
-                Command="{x:Bind NoteFileViewModel.editC}">
-            </AppBarButton>
-            <AppBarButton Icon="Delete" Label="Delete" ToolTipService.ToolTip="Delete Note"
-                Command="{x:Bind NoteFileViewModel.deleteC}">
-            </AppBarButton>
         </CommandBar>
     </Page.BottomAppBar>
 </Page>

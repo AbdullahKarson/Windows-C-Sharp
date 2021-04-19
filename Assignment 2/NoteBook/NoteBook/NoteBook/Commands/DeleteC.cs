@@ -42,7 +42,7 @@ namespace NoteBook.Commands
             {
                 //Delete the selected file from the windows storage
                 //noteBookRepo.DeleteFile(nFileViewModel.fileName);
-                DBNoteBook.DeleteFile(nFileViewModel.fileName);
+                DBNoteBook.DeleteNote(nFileViewModel.fileName);
 
                 //Set the selected file empty and make the Edit and Save button unclickable
                 nFileViewModel.SelectedFile = new NoteFile("", "");

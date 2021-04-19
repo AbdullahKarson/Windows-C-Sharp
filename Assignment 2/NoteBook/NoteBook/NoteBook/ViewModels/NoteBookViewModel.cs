@@ -16,7 +16,7 @@ namespace NoteBook.ViewModels
     public class NoteFileViewModel : INotifyPropertyChanged
     {
         //Initiate Commands
-        public AboutC aboutC { get; }
+        //public AboutC aboutC { get; }
         public CreateC createC { get; }
         public DeleteC deleteC { get; }
         public EditC editC { get; }
@@ -77,7 +77,7 @@ namespace NoteBook.ViewModels
             this.editC = new EditC(this, tBox);
             this.saveC = new SaveC(this, tBox);
             this.exitC = new ExitC();
-            this.aboutC = new AboutC();
+            //this.aboutC = new AboutC();
 
 
             // create a list of files
@@ -127,7 +127,7 @@ namespace NoteBook.ViewModels
             editC.FireCanExecuteChanged();
             saveC.FireCanExecuteChanged();
             exitC.FireCanExecuteChanged();
-            aboutC.FireCanExecuteChanged();
+            //aboutC.FireCanExecuteChanged();
 
         }
 

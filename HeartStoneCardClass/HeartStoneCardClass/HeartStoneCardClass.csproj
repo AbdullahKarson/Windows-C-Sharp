@@ -92,8 +92,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bundle.cs" />
     <Compile Include="Card.cs" />
+    <Compile Include="ClassicCards.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

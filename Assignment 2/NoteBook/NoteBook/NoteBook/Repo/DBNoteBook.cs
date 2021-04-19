@@ -12,7 +12,7 @@ namespace NoteBook.Repo
     public static class DBNoteBook
     {
         //Local Database Connection
-        static SqliteConnection dBConnection = new SqliteConnection("Filename=NoteBook.db");
+        public static SqliteConnection dBConnection = new SqliteConnection("Filename=NoteBook.db");
 
         /// <summary>
         /// Initiate database
@@ -98,7 +98,7 @@ namespace NoteBook.Repo
         /// Delete Note in Table
         /// </summary>
         /// <param name="fileName"></param>
-        public static void DeleteFile(string fileName)
+        public static void DeleteNote(string fileName)
         {
             string deleteStatement = "DELETE FROM NoteBook " +
                         "WHERE NoteName = @FName;";
